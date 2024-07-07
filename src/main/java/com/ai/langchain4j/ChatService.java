@@ -32,6 +32,17 @@ public class ChatService implements UserStreamCommunication, ModelCommunication 
     public CompletableFuture<Void> ask(String userPrompt) {
         TokenStream tokenStream = chatWithModel(userPrompt);
         CompletableFuture<Void> future = new CompletableFuture<>();
+
+        tokenStream.onNext(System.out::print)
+                .onComplete(ignored -> {
+                    System.out.println();
+                    future.complete(null);
+                })
+                .onError(Throwable::printStackTrace)
+                .start();
+
+        // Java 22
+/*
         tokenStream.onNext(System.out::print)
                 .onComplete(_ -> {
                     System.out.println();
@@ -39,6 +50,7 @@ public class ChatService implements UserStreamCommunication, ModelCommunication 
                 })
                 .onError(Throwable::printStackTrace)
                 .start();
+*/
         return future;
     }
 
@@ -50,8 +62,7 @@ public class ChatService implements UserStreamCommunication, ModelCommunication 
     private static StreamingChatLanguageModel connectModel(String url, String modelName) {
         return OllamaStreamingChatModel.builder()
                 .baseUrl(url)
-                .modelName(modelName)
-                .timeout(Duration.ofHours(1))
+                .modelName(modelName)                .timeout(Duration.ofHours(2))
                 .build();
     }
 }
