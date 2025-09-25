@@ -92,9 +92,9 @@ if %errorlevel% neq 0 (
 :menu
 echo.
 echo LangChain4j Demo - Main Menu:
-echo 1. HelloWorld - Basic Chat
-echo 2. ServiceExample - Chat with Memory
-echo 3. ResponseWithStreaming - Real-time Streaming
+echo 1. HelloWorld - Basic chat with retry mechanism
+echo 2. ServiceExample - Exercise coach with memory (remembers last 10 messages)
+echo 3. ResponseWithStreaming - Real-time streaming responses
 echo 4. Clean ^& Build Project
 echo 5. Compile Only
 echo 6. Test Project

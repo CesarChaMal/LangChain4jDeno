@@ -41,7 +41,7 @@ chmod +x run
 
 The menu provides options for:
 1. **HelloWorld** - Basic chat with retry mechanism
-2. **ServiceExample** - Chat with memory (remembers last 10 messages)
+2. **ServiceExample** - Exercise coach with memory (remembers last 10 messages)
 3. **ResponseWithStreaming** - Real-time streaming responses
 4. **Clean & Build Project** - Full clean and build
 5. **Compile Only** - Compile source code
