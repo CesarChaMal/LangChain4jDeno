@@ -14,7 +14,10 @@ public class HelloWorld {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(in);
-        var model = connectModel("llama2");
+        String modelName = System.getenv("OLLAMA_MODEL");
+        if (modelName == null) modelName = "llama3.2:1b";
+        var model = connectModel(modelName);
+        out.println("Using model: " + modelName);
         while (true) {
             out.print("""
                     Type 'exit' to quit the program.

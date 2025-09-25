@@ -9,7 +9,10 @@ public class ServiceExample {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        ChatService chatService = new ChatService(OLLAMA_HOST, "llama2");
+        String modelName = System.getenv("OLLAMA_MODEL");
+        if (modelName == null) modelName = "llama3.2:1b";
+        ChatService chatService = new ChatService(OLLAMA_HOST, modelName);
+        System.out.println("Using model: " + modelName);
         while (true) {
             System.out.print("""
                     Type 'exit' to quit the program.
